@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=oonetstat-bin
+_pkgname=oonetstat
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Inspects open TCP, UDP, and UNIX domain sockets, routing tables, and interface stats."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/oonetstat"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('oonetstat')
+conflicts=('oonetstat')
+source_x86_64=("${url}/releases/download/v${pkgver}/oonetstat-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/oonetstat-linux-x86_64" "${pkgdir}/usr/bin/oonetstat"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/oonetstat-uninstall"
+}
